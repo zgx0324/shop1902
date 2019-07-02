@@ -4,21 +4,61 @@ import java.util.Date;
 
 public class User {
 
-    private long id;
+    private Integer uid;
+    private String userName;
+    private String passWord;
+    private String name;
     private String email;
-    private String password;
-    private String username;
-    private String role;
-    private int status;
-    private Date regTime;
-    private String regIp;
+    private String phone;
+    private String addr;
+    private Integer state;
+    private String code;
 
-    public long getId() {
-        return id;
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone=" + phone +
+                ", addr='" + addr + '\'' +
+                ", state=" + state +
+                ", code='" + code + '\'' +
+                '}';
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -29,65 +69,35 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAddr() {
+        return addr;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAddr(String addr) {
+        this.addr = addr;
     }
 
-    public String getRole() {
-        return role;
+    public Integer getState() {
+        return state;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setState(Integer state) {
+        this.state = state;
     }
 
-    public int getStatus() {
-        return status;
+    public String getCode() {
+        return code;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public Date getRegTime() {
-        return regTime;
-    }
-
-    public void setRegTime(Date regTime) {
-        this.regTime = regTime;
-    }
-
-    public String getRegIp() {
-        return regIp;
-    }
-
-    public void setRegIp(String regIp) {
-        this.regIp = regIp;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", username='" + username + '\'' +
-                ", role='" + role + '\'' +
-                ", status=" + status +
-                ", regTime=" + regTime +
-                ", regIp='" + regIp + '\'' +
-                '}';
+    public void setCode(String code) {
+        this.code = code;
     }
 }

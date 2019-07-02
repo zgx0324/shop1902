@@ -3,7 +3,9 @@ package com.aishang.dao;
 import com.aishang.po.User;
 
 public interface IUserDao {
+    //根据用户名查询用户
+    User selectUserByUserName(String userName);
 
-    User selectUser(long id);
-
+    //添加用户
+    void addUser(User user);
 }

@@ -4,8 +4,15 @@
 <!-- 设置为IUserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.aishang.dao.IUserDao">
 
-    <select id="selectUser" resultType="User" parameterType="long">
-        SELECT * FROM user WHERE id = #{id}
+    <!--根据用户名查询用户-->
+    <select id="selectUserByUserName" parameterType="String" resultType="User">
+        select uid,username as userName,password as passWord,name,email,phone,addr,state,code
+        from user
+        where username=#{userName}
     </select>
 
+    <!--添加用户-->
+    <insert id="addUser" parameterType="User">
+        insert into user values (default ,#{userName},#{passWord},#{name},#{email},#{phone},#{addr},#{state},#{code})
+    </insert>
 </mapper>

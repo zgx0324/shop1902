@@ -4,6 +4,7 @@ import com.aishang.po.User;
 
 public interface IUserService {
 
-    public User selectUser(long userId);
+    User selectUserByUserName(String userName);
 
+    void addUser(User user);
 }
