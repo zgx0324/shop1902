@@ -58,6 +58,7 @@ public class UserController {
                 flag=false;
                 model.addAttribute("userNameMsg","用户名不可为空");
             }
+
         }
         if(flag){
             //调用service添加

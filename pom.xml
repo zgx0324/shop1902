@@ -25,6 +25,11 @@
   </properties>
 
   <dependencies>
+      <dependency>
+          <groupId>com.validatecode</groupId>
+          <artifactId>validatecode</artifactId>
+          <version>1.0.0</version>
+      </dependency>
       <!-- jstl -->
       <dependency>
           <groupId>javax.servlet</groupId>
