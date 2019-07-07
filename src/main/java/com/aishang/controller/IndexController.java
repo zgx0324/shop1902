@@ -1,6 +1,5 @@
 package com.aishang.controller;
 
-import com.aishang.po.Category;
 import com.aishang.po.CategoryExt;
 import com.aishang.po.CategorySecond;
 import com.aishang.po.CategorySecondExt;
@@ -10,12 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.jws.WebParam;
 import java.util.List;
 
 /*
  * @Author 爱尚实训赵国鑫
- * @ClassName  IndexController
- * @Date 2019/7/4/14:33
+ * @ClassName  DoLogin
+ * @Date 2019/7/4/9:13
  * @Description TODO:(一句话描述这个类)
  */
 @RequestMapping("/")
@@ -25,17 +25,22 @@ public class IndexController {
     @Resource
     private ICategoryService categoryService;
 
-    @RequestMapping("/index")
-    public String index(Model model){
-
-        //获取一二级类目集合
-        List<CategoryExt<CategorySecond>> categoryExt = categoryService.getCategoryAndCategorySecond();
-        model.addAttribute("categoryExt",categoryExt);
-
-        //获取首页二级商品热门列表
-        List<CategoryExt<CategorySecondExt>> categorys = categoryService.getIsHotProductList(categoryExt);
-        model.addAttribute("categorys",categorys);
-        return "index";
+    //去往登录页
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
     }
 
+    //去往主页
+    @RequestMapping("/index")
+    public String index(Model model){
+        //返回一二级类目的CategoryExt<CategorySecond>集合
+        List<CategoryExt> allCategoryExt = categoryService.getAllCategoryExt();
+        model.addAttribute("allCategory",allCategoryExt);
+
+        //返回一级和二类扩展类CategoryExt<CategorySecondExt>的集合
+        List<CategoryExt> categoryExtAndProduct=categoryService.getAllCategoryExtAndProduct(allCategoryExt);
+        model.addAttribute("categoryExtAndProduct",categoryExtAndProduct);
+        return "index";
+    }
 }
