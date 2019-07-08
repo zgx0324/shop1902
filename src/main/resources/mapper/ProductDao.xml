@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.aishang.dao.IProductDao">
+    <!-- 配置Product映射关系-->
+    <resultMap id="productMap" type="Product">
+        <id column="pid" property="pid"></id>
+        <result column="pname" property="pName"></result>
+        <result column="market_price" property="marketPrice"></result>
+        <result column="shop_price" property="shopPrice"></result>
+        <result column="pdesc" property="pDesc"></result>
+        <result column="is_hot" property="isHot"></result>
+        <result column="pdate" property="pDate"></result>
+        <result column="csid" property="csid"></result>
+        <result column="image" property="image"></result>
+    </resultMap>
+    <!--根据一二级类目复合查询商品列表-->
+    <select id="searchProducts" parameterType="ProductBean" resultMap="productMap">
+        select product.*
+        from product
+        inner JOIN categorysecond
+        on product.csid=categorysecond.csid
+        inner JOIN category
+        on category.cid=categorysecond.cid
+        <where>
+            <if test="cid!=null">
+                and category.cid=#{cid}
+            </if>
+            <if test="csid!=null">
+                and categorysecond.csid=#{csid}
+            </if>
+        </where>
+        limit #{start} ,#{pageSize}
+    </select>
+
+    <select id="getRowCount" parameterType="ProductBean" resultType="Integer">
+        select count(0)
+        from product
+        inner JOIN categorysecond
+        on product.csid=categorysecond.csid
+        inner JOIN category
+        on category.cid=categorysecond.cid
+        <where>
+            <if test="cid!=null">
+                and category.cid=#{cid}
+            </if>
+            <if test="csid!=null">
+                and categorysecond.csid=#{csid}
+            </if>
+        </where>
+    </select>
+</mapper>
