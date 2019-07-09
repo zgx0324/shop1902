@@ -166,17 +166,10 @@
                 <div style="clear:both;"></div>
             </div>
             <ul class="search-ul">
-            	<li><a href="JavaScript:;">绿豆</a></li>
-            	<li><a href="JavaScript:;">大米</a></li>
-            	<li><a href="JavaScript:;">驱蚊</a></li>
-            	<li><a href="JavaScript:;">洗面奶</a></li>
-            	<li><a href="JavaScript:;">格力空调</a></li>
-            	<li><a href="JavaScript:;">洗发</a></li>
-            	<li><a href="JavaScript:;">护发</a></li>
-            	<li><a href="JavaScript:;">葡萄</a></li>
-            	<li><a href="JavaScript:;">脉动</a></li>
-            	<li><a href="JavaScript:;">海鲜</a></li>
-            	<li><a href="JavaScript:;">水产</a></li>
+            	<c:forEach items="${searchHotProducts}" var="product">
+                    <li><a href="${pageContext.request.contextPath}/product/productDetail.do?pid=${product.pid}">${product.pName}</a></li>
+                </c:forEach>
+
                 <div style="clear:both;"></div>
             </ul>
         </div>

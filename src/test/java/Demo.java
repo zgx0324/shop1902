@@ -1,4 +1,3 @@
-/*
 import com.aishang.dao.IProductDao;
 import com.aishang.po.Product;
 import com.aishang.po.ProductBean;
@@ -19,31 +18,31 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
- */
 /**
      * @Author 爱尚实训赵国鑫
      * @ClassName  Demo
      * @Date 2019/7/7/11:13
      * @Description TODO:( )
-  * *//*
+  * */
 
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-*.xml"})
+@ContextConfiguration(locations = {"classpath:spring-applicationContext.xml"})
 public class Demo {
 
-*/
-/*MockMvc mockMvc;
 
-  @Autowired
+
+ /*
+    MockMvc mockMvc;
+ @Autowired
   protected WebApplicationContext context;
 
   @Before
   public void initMockMvc(){
     mockMvc= MockMvcBuilders.webAppContextSetup((WebApplicationContext) context).build();
-  }*//*
-
+  }
+*/
 
 
     @Resource
@@ -53,7 +52,7 @@ public class Demo {
     public void fun1() {
         ProductBean productBean = new ProductBean();
         productBean.setCid(1);
-
+        productBean.setpName("韩");
         productBean.setCsid(1);
         List<Product> products = productDao.searchProducts(productBean);
         Integer integer = productDao.getRowCount(productBean);
@@ -62,4 +61,3 @@ public class Demo {
     }
 
 }
-*/

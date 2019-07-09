@@ -30,6 +30,9 @@
             <if test="csid!=null">
                 and categorysecond.csid=#{csid}
             </if>
+            <if test="pName!=null">
+                and product.pname like '%${pName}%'
+            </if>
         </where>
         limit #{start} ,#{pageSize}
     </select>
@@ -48,6 +51,17 @@
             <if test="csid!=null">
                 and categorysecond.csid=#{csid}
             </if>
+            <if test="pName!=null">
+                and product.pname like '%${pName}%'
+            </if>
         </where>
+    </select>
+
+    <select id="findProduct" resultMap="productMap" parameterType="Integer">
+        select * from product where pid = #{pid}
+    </select>
+
+    <select id="searchHotProduct" resultMap="productMap">
+        select * from product where is_hot=1 limit 5
     </select>
 </mapper>

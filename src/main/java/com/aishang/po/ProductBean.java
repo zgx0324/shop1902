@@ -9,6 +9,15 @@ package com.aishang.po;
 public class ProductBean extends PageBean<Product>{
     private Integer cid;
     private Integer csid;
+    private String pName;
+
+    public String getpName() {
+        return pName;
+    }
+
+    public void setpName(String pName) {
+        this.pName = pName;
+    }
 
     public Integer getCid() {
         return cid;

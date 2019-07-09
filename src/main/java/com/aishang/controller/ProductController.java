@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /*
@@ -25,8 +26,19 @@ public class ProductController {
     @Resource
     private IProductService productService;
 
+    //去往商品搜索页
     @RequestMapping("/searchProduct")
-    public String searchProduct(ProductBean productBean, Model model){
+    public String searchProduct(ProductBean productBean, Model model) {
+
+        try {//给pName转码
+            if((productBean.getpName()!=null)){
+                productBean.setpName(new String (productBean.getpName().trim().getBytes("iso-8859-1"),"utf-8"));
+            }
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         //返回一二级类目导航集合
         List<CategoryExt> allCategoryExt = CategoryUtil.categoryUtil.getAllCategoryExt();
         model.addAttribute("allCategory",allCategoryExt);
@@ -36,5 +48,24 @@ public class ProductController {
         model.addAttribute("productBean",productBean);
 
         return "searchProduct";
+    }
+
+    /**
+     * 去往商品详情页
+     * @param pid
+     * @param model
+     * @return
+     */
+    @RequestMapping("/productDetail")
+    public String productDetail(Integer pid,Model model){
+
+       Product product =  productService.findProduct(pid);
+
+       model.addAttribute("product",product);
+
+        //返回一二级类目导航集合
+        List<CategoryExt> allCategoryExt = CategoryUtil.categoryUtil.getAllCategoryExt();
+        model.addAttribute("allCategory",allCategoryExt);
+        return "productDetail";
     }
 }

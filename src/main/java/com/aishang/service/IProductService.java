@@ -21,4 +21,16 @@ public interface IProductService {
      * 根据一二级类目复合查询商品列表
      */
     ProductBean searchProduct(ProductBean productBean);
+
+    /**
+     * 根据商品id查询商品
+     * @param pid
+     * @return
+     */
+    Product findProduct(Integer pid);
+
+    /**
+     * 查询热搜商品
+     */
+    List<Product> searchHotProduct();
 }

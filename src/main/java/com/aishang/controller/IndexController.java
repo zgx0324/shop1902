@@ -1,12 +1,16 @@
 package com.aishang.controller;
 
+import com.aishang.po.Category;
 import com.aishang.po.CategoryExt;
+import com.aishang.po.Product;
 import com.aishang.service.ICategoryService;
+import com.aishang.util.CategoryUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import java.util.List;
 
 /*
@@ -34,6 +38,7 @@ public class IndexController {
         //返回一二级类目的CategoryExt<CategorySecond>集合
         List<CategoryExt> allCategoryExt = categoryService.getAllCategoryExt();
         model.addAttribute("allCategory",allCategoryExt);
+
 
         //返回一级和二类扩展类CategoryExt<CategorySecondExt>的集合
         List<CategoryExt> categoryExtAndProduct=categoryService.getAllCategoryExtAndProduct(allCategoryExt);

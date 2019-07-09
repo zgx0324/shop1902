@@ -37,4 +37,14 @@ public class ProductServiceImpl implements IProductService {
 
         return productBean;
     }
+
+    @Override
+    public Product findProduct(Integer pid) {
+        return productDao.findProduct(pid);
+    }
+
+    @Override
+    public List<Product> searchHotProduct() {
+        return productDao.searchHotProduct();
+    }
 }

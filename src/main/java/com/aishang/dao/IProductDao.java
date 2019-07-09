@@ -23,4 +23,16 @@ public interface IProductDao {
      * 查询商品总记录数
      */
     Integer getRowCount(ProductBean productBean);
+
+    /**
+     * 根据商品id查询商品
+     * @param pid
+     * @return
+     */
+    Product findProduct(Integer pid);
+
+    /**
+     * 查询热搜商品
+     */
+    List<Product> searchHotProduct();
 }
