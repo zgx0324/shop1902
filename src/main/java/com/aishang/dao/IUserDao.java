@@ -8,4 +8,7 @@ public interface IUserDao {
 
     //添加用户
     void addUser(User user);
+
+    //登录验证
+    User doLogin(User user);
 }

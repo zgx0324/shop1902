@@ -3,7 +3,13 @@
 
 <!-- 设置为IUserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.aishang.dao.IUserDao">
-
+    <!--登录验证-->
+    <select id="doLogin" resultType="User">
+        SELECT uid,username as userName,password as passWord,name,email,phone,addr,state,code
+        FROM user
+        where username=#{userName}
+        and password=#{passWord}
+    </select>
     <!--根据用户名查询用户-->
     <select id="selectUserByUserName" parameterType="String" resultType="User">
         select uid,username as userName,password as passWord,name,email,phone,addr,state,code

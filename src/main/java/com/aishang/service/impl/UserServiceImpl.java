@@ -23,4 +23,10 @@ public class UserServiceImpl implements IUserService {
         userDao.addUser(user);
     }
 
+    @Override
+    public User doLogin(User user) {
+
+        return this.userDao.doLogin(user);
+    }
+
 }

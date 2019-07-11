@@ -10,24 +10,35 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/zhonglin.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/zhongling2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[name='addCart']").click(function () {
+                var count = $(this).parent().prev().find("[name='count']").html();
+                var pid =  $(this).parent().prev().find("[name='count']").next().val();
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/cart/addCartItem.do",
+                    type:"get",
+                    dataType:"text",
+                    data:{
+                        pid:pid,
+                        count:count
+                    },
+                    success:function (data) {
+                        if(data!=""){
+                            alert("添加成功！")
+                        }
+                    }
+                    
+                })
+            })
+        })
+    </script>
 </head>
 
 <body>
 
 	<!--header-->
-    <div class="zl-header">
-    	<div class="zl-hd w1200">
-        	<p class="hd-p1 f-l">
-            	Hi!您好，欢迎来到宅客微购，请登录  <a href="注册.html">【免费注册】</a>
-            </p>
-        	<p class="hd-p2 f-r">
-            	<a href="index.html">返回首页 (个人中心)</a><span>|</span>
-                <a href="购物车.html">我的购物车</a><span>|</span>
-                <a href="我的订单.html">我的订单</a>
-            </p>
-            <div style="clear:both;"></div>
-        </div>
-    </div>
+    <%@include file="top.jsp"%>
 	
     <!--logo search weweima-->
     <%@include file="head.jsp"%>
@@ -197,7 +208,8 @@
                             <p class="miaoshu">${product.pName}</p>
                             <div class="li-md">
                                 <div class="md-l f-l">
-                                    <p class="md-l-l f-l" ap="">1</p>
+                                    <p class="md-l-l f-l" name="count" ap="">1</p>
+                                    <input type="hidden" value="${product.pid}">
                                     <div class="md-l-r f-l">
                                         <a href="JavaScript:;" class="md-xs" at="">∧</a>
                                         <a href="JavaScript:;" class="md-xx" ab="">∨</a>
@@ -206,7 +218,7 @@
                                 </div>
                                 <div class="md-r f-l">
                                     <button class="md-l-btn1">立即购买</button>
-                                    <button class="md-l-btn2">加入购物车</button>
+                                    <button class="md-l-btn2" name="addCart">加入购物车</button>
                                 </div>
                                 <div style="clear:both;"></div>
                             </div>
