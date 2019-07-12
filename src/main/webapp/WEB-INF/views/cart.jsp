@@ -88,6 +88,7 @@
 
             })
         })
+
     })
 
     //更改购物项数量
@@ -185,7 +186,7 @@
                     	￥：<span id="subTotal">${cart.subTotal}</span>
                     </p>
                 </div>
-            	<a href="JavaScript:;" class="js-a1 f-l">结算</a>
+            	<a href="${pageContext.request.contextPath}/order/toConfirmOrder.do" class="js-a1 f-l">结算</a>
                 <div style="clear:both;"></div>
             </div>
             <div style="clear:both;"></div>

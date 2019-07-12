@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.aishang.dao.IOrderDao">
+
+    <!--创建待支付订单-->
+    <insert id="createOrder" parameterType="OrderExt">
+      <selectKey resultType="Integer" keyColumn="oid" keyProperty="oid" order="AFTER">
+          select last_insert_id()
+      </selectKey>
+       insert into orders values (default ,#{total},#{orderTime},#{state},#{name},${phone},#{addr},#{uid})
+    </insert>
+
+    <!--创建订单项-->
+    <insert id="createOrderItem" parameterType="OrderItemExt">
+        insert into orderitem values (default ,#{count},#{subtoTal},#{pid},#{oid})
+    </insert>
+
+    <!--修改订单状态-->
+    <update id="change" parameterType="order">
+        update orders set state=#{state} where oid=#{oid}
+    </update>
+
+    <resultMap id="orderDetail" type="OrderExt">
+        <id column="oid" property="oid"></id>
+        <result column="total" property="total"></result>
+        <result column="ordertime" property="orderTime"></result>
+        <result column="state" property="state"></result>
+        <result column="name" property="name"></result>
+        <result column="phone" property="phone"></result>
+        <result column="addr" property="addr"></result>
+        <result column="uid" property="uid"></result>
+        <collection property="orderItemExts" ofType="OrderItemExt">
+            <id column="itemid" property="itemId"></id>
+            <result column="count" property="count"></result>
+            <result column="pid" property="pid"></result>
+            <result column="oid" property="oid"></result>
+            <result column="subtotal" property="subtoTal"></result>
+            <association property="product" javaType="Product">
+                <id column="pid" property="pid"></id>
+                <result column="pname" property="pName"></result>
+                <result column="market_price" property="marketPrice"></result>
+                <result column="shop_price" property="shopPrice"></result>
+                <result column="pdesc" property="pDesc"></result>
+                <result column="is_hot" property="isHot"></result>
+                <result column="pdate" property="pDate"></result>
+                <result column="csid" property="csid"></result>
+                <result column="image" property="image"></result>
+            </association>
+        </collection>
+    </resultMap>
+
+    <!--根据oid查询订单详情-->
+    <select id="getOrderExt" parameterType="Integer" resultMap="orderDetail">
+      select *
+      from orders
+      inner join orderitem o
+      on orders.oid = o.oid
+      inner join product p
+      on o.pid = p.pid
+      where o.oid=#{oid}
+    </select>
+</mapper>
